@@ -63,12 +63,9 @@ const UrlInput = () => {
   return (
     <div style={{ padding: 16, margin: "auto", maxWidth: "auto" }}>
       <CssBaseline />
-      <Grid container alignItems="flex-start" spacing={2}>
-        {/* <a href={ "https://serene-escarpment-09925.herokuapp.com/"} target="_blank">Link</a> */}
-      </Grid>
+      <Grid container alignItems="flex-start" spacing={2}></Grid>
       <Form
         onSubmit={onSubmit}
-        // initialValues={{ employed: true, stooge: 'larry' }}
         validate={validate}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
