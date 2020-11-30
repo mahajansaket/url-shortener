@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { TextField } from "mui-rff";
-import { Grid, Button, CssBaseline } from "@material-ui/core";
+import { Grid, Button, CssBaseline, IconButton } from "@material-ui/core";
+import { GitHub, Language } from "@material-ui/icons";
 import { useSnackbar } from "notistack";
 import { Form } from "react-final-form";
 import { INSERT_URL } from "../Graphql";
@@ -20,8 +21,7 @@ const UrlInput = () => {
   const [shortUrl, setShortUrl] = useState();
   const [addUrl, setAddUrl] = useMutation(INSERT_URL, {
     update: (proxy, mutationResult) => {
-      const resData =
-        mutationResult.data.insert_url_shortener.returning[0];
+      const resData = mutationResult.data.insert_url_shortener.returning[0];
       setShortUrl(resData);
       console.log(
         "mutationResult: ",
@@ -106,14 +106,64 @@ const UrlInput = () => {
             </Grid>
             {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
 
-            {shortUrl ? <div>
-              <Grid container alignItems="flex-start" spacing={2}>
-                <Grid item xs={12}>
-                  URL:  <a href={`${shortUrl.url}`} target="_blank">{shortUrl.url}</a>
+            {shortUrl ? (
+              <div>
+                <Grid container alignItems="flex-start" spacing={2}>
+                  <Grid item xs={12}>
+                    URL:{" "}
+                    <a href={`${shortUrl.url}`} target="_blank">
+                      {shortUrl.url}
+                    </a>
+                  </Grid>
+                  <Grid item xs={12}>
+                    Shortened URL:{" "}
+                    <a href={`${shortUrl.tinyurl}`} target="_blank">
+                      {shortUrl.tinyurl}
+                    </a>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  Shortened URL: <a href={`${shortUrl.tinyurl}`} target="_blank">{shortUrl.tinyurl}</a></Grid>
-              </Grid></div> : <div> <Grid container alignItems="flex-start" spacing={2}><Grid item xs={12}>Welcome to URL Shortener!</Grid><Grid item xs={12}>URL Format: http://www.example.com</Grid></Grid></div>}
+              </div>
+            ) : (
+              <div>
+                {" "}
+                <Grid container alignItems="flex-start" spacing={2}>
+                  <Grid item xs={12}>
+                    Welcome to URL Shortener!
+                    <IconButton
+                      edge="end"
+                      aria-label="web link"
+                      aria-haspopup="true"
+                      color="inherit"
+                      onClick={(event) =>
+                        window.open(
+                          "https://serene-escarpment-09925.herokuapp.com",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <Language />
+                    </IconButton>
+                    <IconButton
+                      edge="end"
+                      aria-label="github link"
+                      aria-haspopup="true"
+                      color="inherit"
+                      onClick={(event) =>
+                        window.open(
+                          "https://github.com/mahajansaket/url-shortener",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <GitHub />
+                    </IconButton>
+                  </Grid>
+                  <Grid item xs={12}>
+                    URL Format: http://www.example.com
+                  </Grid>
+                </Grid>
+              </div>
+            )}
           </form>
         )}
       />
