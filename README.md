@@ -17,6 +17,6 @@ Tech stack
 Run the React app
 -----------------
 
-Run `npm start` to start the todo app.
+Run `npm start` to start the URL Shortener app.
 or
-Run `yarn start` to start the todo app
+Run `yarn start` to start the URL Shortener app
