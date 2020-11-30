@@ -1,6 +1,7 @@
 import React from "react";
 
 import UrlInput from "./Url/UrlInput";
+import AlternateUrl from "./Url/AlternateUrl";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { SnackbarProvider } from "notistack";
 
@@ -16,6 +17,7 @@ const App = () => {
         <div className="App">
           <header className="App-header">
             <UrlInput />
+            <AlternateUrl />
           </header>
         </div>
       </ApolloProvider>
